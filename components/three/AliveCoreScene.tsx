@@ -26,38 +26,64 @@ function LivingCore({ active, onActivate }: LivingCoreProps) {
     if (!group) return;
 
     const scrollProgress = Math.min(window.scrollY / Math.max(window.innerHeight, 1), 1);
-    const targetRotationX = pointer.y * 0.28 + scrollProgress * 0.18;
-    const targetRotationY = pointer.x * 0.42 + elapsed * 0.08;
+    const targetRotationX =
+  pointer.y * 0.45 +
+  scrollProgress * 0.22;
+
+const targetRotationY =
+  pointer.x * 0.62 +
+  elapsed * 0.08;
     const breath = 1 + Math.sin(elapsed * 1.45) * 0.045 + (active ? 0.08 : 0);
 
     group.rotation.x = THREE.MathUtils.lerp(group.rotation.x, targetRotationX, 0.055);
     group.rotation.y = THREE.MathUtils.lerp(group.rotation.y, targetRotationY, 0.06);
     group.rotation.z = Math.sin(elapsed * 0.33) * 0.06;
-    group.position.x = THREE.MathUtils.lerp(group.position.x, pointer.x * 0.22, 0.04);
-    group.position.y = THREE.MathUtils.lerp(group.position.y, pointer.y * 0.18, 0.04);
+    group.position.x = THREE.MathUtils.lerp(
+    group.position.x,
+    pointer.x * 0.42,
+    0.055,
+);
+
+group.position.y = THREE.MathUtils.lerp(
+    group.position.y,
+    pointer.y * 0.34,
+    0.055,
+);
     group.scale.setScalar(THREE.MathUtils.lerp(group.scale.x, breath, 0.08));
 
     if (light) {
       light.position.x = THREE.MathUtils.lerp(light.position.x, pointer.x * viewport.width * 0.35, 0.08);
       light.position.y = THREE.MathUtils.lerp(light.position.y, pointer.y * viewport.height * 0.35 + 1.4, 0.08);
-      light.intensity = THREE.MathUtils.lerp(light.intensity, active ? 7.4 : 5.4, 0.05);
+      const pointerStrength =
+  Math.abs(pointer.x) + Math.abs(pointer.y);
+
+light.intensity = THREE.MathUtils.lerp(
+  light.intensity,
+  (active ? 8.5 : 6.2) + pointerStrength,
+  0.08
+);
     }if (ringOneRef.current) {
-  ringOneRef.current.rotation.y += 0.0025;
-  ringOneRef.current.rotation.x += 0.0008;
+  ringOneRef.current.rotation.y += 0.0028;
+  ringOneRef.current.rotation.x += 0.0012;
+
+  ringOneRef.current.rotation.z =
+    THREE.MathUtils.lerp(
+      ringOneRef.current.rotation.z,
+      pointer.x * 0.22,
+      0.05
+    );
 }
 
 if (ringTwoRef.current) {
-  ringTwoRef.current.rotation.x -= 0.0032;
-  ringTwoRef.current.rotation.z += 0.0015;
-}
-    if (ringOneRef.current) {
-  ringOneRef.current.rotation.y += 0.0025;
-  ringOneRef.current.rotation.x += 0.0008;
-}
+  ringTwoRef.current.rotation.x -= 0.0035;
+  ringTwoRef.current.rotation.z += 0.0018;
 
-if (ringTwoRef.current) {
-  ringTwoRef.current.rotation.x -= 0.0032;
-  ringTwoRef.current.rotation.z += 0.0015;
+  ringTwoRef.current.rotation.y =
+    THREE.MathUtils.lerp(
+      ringTwoRef.current.rotation.y,
+      pointer.y * 0.28,
+      0.05
+    );
 }
 
   });
