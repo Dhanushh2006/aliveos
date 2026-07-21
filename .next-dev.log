@@ -1,0 +1,35 @@
+
+> aliveos@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.10 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.137.1:3000
+✓ Ready in 1126ms
+
+ GET / 200 in 636ms (next.js: 324ms, application-code: 311ms)
+ GET / 200 in 438ms (next.js: 40ms, application-code: 399ms)
+✓ Compiled in 445ms
+ GET / 200 in 526ms (next.js: 243ms, application-code: 283ms)
+ GET / 200 in 123ms (next.js: 9ms, application-code: 114ms)
+ GET / 200 in 74ms (next.js: 12ms, application-code: 62ms)
+✓ Compiled in 2.4s
+ GET / 200 in 12.9s (next.js: 6.9s, application-code: 6.0s)
+ GET / 200 in 355ms (next.js: 46ms, application-code: 309ms)
+ GET / 200 in 181ms (next.js: 23ms, application-code: 157ms)
+ GET / 200 in 1026ms (next.js: 39ms, application-code: 987ms)
+✓ Compiled in 120ms
+ GET / 200 in 359ms (next.js: 196ms, application-code: 163ms)
+ GET / 200 in 666ms (next.js: 31ms, application-code: 634ms)
+✓ Compiled in 275ms
+ GET / 200 in 613ms (next.js: 255ms, application-code: 359ms)
+ GET / 200 in 249ms (next.js: 36ms, application-code: 213ms)
+ GET / 200 in 142ms (next.js: 17ms, application-code: 124ms)
+ GET / 200 in 142ms (next.js: 69ms, application-code: 72ms)
+✓ Compiled in 322ms
+ GET / 500 in 2.7s (next.js: 2.3s, application-code: 385ms)
+ GET / 500 in 60ms (next.js: 24ms, application-code: 35ms)
+ GET / 500 in 41ms (next.js: 21ms, application-code: 20ms)
+ GET / 500 in 557ms (next.js: 442ms, application-code: 114ms)
+ GET / 500 in 135ms (next.js: 90ms, application-code: 45ms)
+[?25h

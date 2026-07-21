@@ -1,0 +1,371 @@
+⨯ ./components/sections/HeroSection.tsx:53:23
+Expected ';', '}' or <eof>
+  [90m51 |[0m   [36mconst[0m [liteMode, setLiteMode] = useState([36mtrue[0m);
+  [90m52 |[0m
+[31m[1m>[0m [90m53 |[0m   useEffect(() => {[32m`r`[0mn    [36mconst[0m frame = window.requestAnimationFrame(() => {[32m`r`[0mn      set...
+  [90m   |[0m                       [31m[1m^[0m
+  [90m54 |[0m
+  [90m55 |[0m   [36mreturn[0m (
+  [90m56 |[0m     <motion.div
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/sections/HeroSection.tsx
+    ./app/page.tsx
+
+
+
+./components/three/AliveCoreScene.tsx:79:56
+Expected ';', '}' or <eof>
+  [90m77 |[0m
+  [90m78 |[0m [36mfunction[0m seededNoise(seed: number) {[32m`r[0m
+[31m[1m>[0m [90m79 |[0m [32m  const value = Math.sin(seed * 12.9898) * 43758.5453;`[0mr
+  [90m   |[0m                                                        [31m[1m^[0m
+  [90m80 |[0m   [36mreturn[0m value - [33mMath[0m.floor(value);[32m`r[0m
+  [90m81 |[0m [32m}`[0mr
+  [90m82 |[0m [32m`r[0m
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Client Component Browser:
+    ./components/three/AliveCoreScene.tsx [Client Component Browser]
+    ./components/sections/HeroSection.tsx [Client Component Browser]
+    ./components/sections/HeroSection.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+
+⨯ ./components/sections/HeroSection.tsx:53:23
+Expected ';', '}' or <eof>
+  [90m51 |[0m   [36mconst[0m [liteMode, setLiteMode] = useState([36mtrue[0m);
+  [90m52 |[0m
+[31m[1m>[0m [90m53 |[0m   useEffect(() => {[32m`r`[0mn    [36mconst[0m frame = window.requestAnimationFrame(() => {[32m`r`[0mn      set...
+  [90m   |[0m                       [31m[1m^[0m
+  [90m54 |[0m
+  [90m55 |[0m   [36mreturn[0m (
+  [90m56 |[0m     <motion.div
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/sections/HeroSection.tsx
+    ./app/page.tsx
+
+
+
+./components/three/AliveCoreScene.tsx:79:56
+Expected ';', '}' or <eof>
+  [90m77 |[0m
+  [90m78 |[0m [36mfunction[0m seededNoise(seed: number) {[32m`r[0m
+[31m[1m>[0m [90m79 |[0m [32m  const value = Math.sin(seed * 12.9898) * 43758.5453;`[0mr
+  [90m   |[0m                                                        [31m[1m^[0m
+  [90m80 |[0m   [36mreturn[0m value - [33mMath[0m.floor(value);[32m`r[0m
+  [90m81 |[0m [32m}`[0mr
+  [90m82 |[0m [32m`r[0m
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Client Component Browser:
+    ./components/three/AliveCoreScene.tsx [Client Component Browser]
+    ./components/sections/HeroSection.tsx [Client Component Browser]
+    ./components/sections/HeroSection.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+
+⨯ ./components/sections/HeroSection.tsx:53:23
+Expected ';', '}' or <eof>
+  [90m51 |[0m   [36mconst[0m [liteMode, setLiteMode] = useState([36mtrue[0m);
+  [90m52 |[0m
+[31m[1m>[0m [90m53 |[0m   useEffect(() => {[32m`r`[0mn    [36mconst[0m frame = window.requestAnimationFrame(() => {[32m`r`[0mn      set...
+  [90m   |[0m                       [31m[1m^[0m
+  [90m54 |[0m
+  [90m55 |[0m   [36mreturn[0m (
+  [90m56 |[0m     <motion.div
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/sections/HeroSection.tsx
+    ./app/page.tsx
+
+
+
+./components/three/AliveCoreScene.tsx:79:56
+Expected ';', '}' or <eof>
+  [90m77 |[0m
+  [90m78 |[0m [36mfunction[0m seededNoise(seed: number) {[32m`r[0m
+[31m[1m>[0m [90m79 |[0m [32m  const value = Math.sin(seed * 12.9898) * 43758.5453;`[0mr
+  [90m   |[0m                                                        [31m[1m^[0m
+  [90m80 |[0m   [36mreturn[0m value - [33mMath[0m.floor(value);[32m`r[0m
+  [90m81 |[0m [32m}`[0mr
+  [90m82 |[0m [32m`r[0m
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Client Component Browser:
+    ./components/three/AliveCoreScene.tsx [Client Component Browser]
+    ./components/sections/HeroSection.tsx [Client Component Browser]
+    ./components/sections/HeroSection.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+
+[browser] Uncaught Error: ./components/sections/HeroSection.tsx:53:23
+Expected ';', '}' or <eof>
+  51 |   const [liteMode, setLiteMode] = useState(true);
+  52 |
+> 53 |   useEffect(() => {`r`n    const frame = window.requestAnimationFrame(() => {`r`n      set...
+     |                       ^
+  54 |
+  55 |   return (
+  56 |     <motion.div
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/sections/HeroSection.tsx
+    ./app/page.tsx
+
+
+    at <unknown> (Error: ./components/sections/HeroSection.tsx:53:23)
+    at <unknown> (Error: (./components/sections/HeroSection.tsx:53:23)
+[browser] ./components/sections/HeroSection.tsx:53:23
+Expected ';', '}' or <eof>
+  51 |   const [liteMode, setLiteMode] = useState(true);
+  52 |
+> 53 |   useEffect(() => {`r`n    const frame = window.requestAnimationFrame(() => {`r`n      set...
+     |                       ^
+  54 |
+  55 |   return (
+  56 |     <motion.div
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/sections/HeroSection.tsx
+    ./app/page.tsx 
+[browser] ./components/three/AliveCoreScene.tsx:79:56
+Expected ';', '}' or <eof>
+  77 |
+  78 | function seededNoise(seed: number) {`r
+> 79 |   const value = Math.sin(seed * 12.9898) * 43758.5453;`r
+     |                                                        ^
+  80 |   return value - Math.floor(value);`r
+  81 | }`r
+  82 | `r
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Client Component Browser:
+    ./components/three/AliveCoreScene.tsx [Client Component Browser]
+    ./components/sections/HeroSection.tsx [Client Component Browser]
+    ./components/sections/HeroSection.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/sections/HeroSection.tsx:53:23
+Expected ';', '}' or <eof>
+  51 |   const [liteMode, setLiteMode] = useState(true);
+  52 |
+> 53 |   useEffect(() => {`r`n    const frame = window.requestAnimationFrame(() => {`r`n      set...
+     |                       ^
+  54 |
+  55 |   return (
+  56 |     <motion.div
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/sections/HeroSection.tsx
+    ./app/page.tsx 
+[browser] ./components/three/AliveCoreScene.tsx:79:56
+Expected ';', '}' or <eof>
+  77 |
+  78 | function seededNoise(seed: number) {`r
+> 79 |   const value = Math.sin(seed * 12.9898) * 43758.5453;`r
+     |                                                        ^
+  80 |   return value - Math.floor(value);`r
+  81 | }`r
+  82 | `r
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Client Component Browser:
+    ./components/three/AliveCoreScene.tsx [Client Component Browser]
+    ./components/sections/HeroSection.tsx [Client Component Browser]
+    ./components/sections/HeroSection.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+⨯ ./components/sections/HeroSection.tsx:53:23
+Expected ';', '}' or <eof>
+  [90m51 |[0m   [36mconst[0m [liteMode, setLiteMode] = useState([36mtrue[0m);
+  [90m52 |[0m
+[31m[1m>[0m [90m53 |[0m   useEffect(() => {[32m`r`[0mn    [36mconst[0m frame = window.requestAnimationFrame(() => {[32m`r`[0mn      set...
+  [90m   |[0m                       [31m[1m^[0m
+  [90m54 |[0m
+  [90m55 |[0m   [36mreturn[0m (
+  [90m56 |[0m     <motion.div
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/sections/HeroSection.tsx
+    ./app/page.tsx
+
+
+
+./components/three/AliveCoreScene.tsx:79:56
+Expected ';', '}' or <eof>
+  [90m77 |[0m
+  [90m78 |[0m [36mfunction[0m seededNoise(seed: number) {[32m`r[0m
+[31m[1m>[0m [90m79 |[0m [32m  const value = Math.sin(seed * 12.9898) * 43758.5453;`[0mr
+  [90m   |[0m                                                        [31m[1m^[0m
+  [90m80 |[0m   [36mreturn[0m value - [33mMath[0m.floor(value);[32m`r[0m
+  [90m81 |[0m [32m}`[0mr
+  [90m82 |[0m [32m`r[0m
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Client Component Browser:
+    ./components/three/AliveCoreScene.tsx [Client Component Browser]
+    ./components/sections/HeroSection.tsx [Client Component Browser]
+    ./components/sections/HeroSection.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+
+⨯ ./components/sections/HeroSection.tsx:53:23
+Expected ';', '}' or <eof>
+  [90m51 |[0m   [36mconst[0m [liteMode, setLiteMode] = useState([36mtrue[0m);
+  [90m52 |[0m
+[31m[1m>[0m [90m53 |[0m   useEffect(() => {[32m`r`[0mn    [36mconst[0m frame = window.requestAnimationFrame(() => {[32m`r`[0mn      set...
+  [90m   |[0m                       [31m[1m^[0m
+  [90m54 |[0m
+  [90m55 |[0m   [36mreturn[0m (
+  [90m56 |[0m     <motion.div
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/sections/HeroSection.tsx
+    ./app/page.tsx
+
+
+
+./components/three/AliveCoreScene.tsx:79:56
+Expected ';', '}' or <eof>
+  [90m77 |[0m
+  [90m78 |[0m [36mfunction[0m seededNoise(seed: number) {[32m`r[0m
+[31m[1m>[0m [90m79 |[0m [32m  const value = Math.sin(seed * 12.9898) * 43758.5453;`[0mr
+  [90m   |[0m                                                        [31m[1m^[0m
+  [90m80 |[0m   [36mreturn[0m value - [33mMath[0m.floor(value);[32m`r[0m
+  [90m81 |[0m [32m}`[0mr
+  [90m82 |[0m [32m`r[0m
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Client Component Browser:
+    ./components/three/AliveCoreScene.tsx [Client Component Browser]
+    ./components/sections/HeroSection.tsx [Client Component Browser]
+    ./components/sections/HeroSection.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+
+[browser] Uncaught Error: ./components/sections/HeroSection.tsx:53:23
+Expected ';', '}' or <eof>
+  51 |   const [liteMode, setLiteMode] = useState(true);
+  52 |
+> 53 |   useEffect(() => {`r`n    const frame = window.requestAnimationFrame(() => {`r`n      set...
+     |                       ^
+  54 |
+  55 |   return (
+  56 |     <motion.div
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/sections/HeroSection.tsx
+    ./app/page.tsx
+
+
+    at <unknown> (Error: ./components/sections/HeroSection.tsx:53:23)
+    at <unknown> (Error: (./components/sections/HeroSection.tsx:53:23)
+[browser] ./components/sections/HeroSection.tsx:53:23
+Expected ';', '}' or <eof>
+  51 |   const [liteMode, setLiteMode] = useState(true);
+  52 |
+> 53 |   useEffect(() => {`r`n    const frame = window.requestAnimationFrame(() => {`r`n      set...
+     |                       ^
+  54 |
+  55 |   return (
+  56 |     <motion.div
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/sections/HeroSection.tsx
+    ./app/page.tsx 
+[browser] ./components/three/AliveCoreScene.tsx:79:56
+Expected ';', '}' or <eof>
+  77 |
+  78 | function seededNoise(seed: number) {`r
+> 79 |   const value = Math.sin(seed * 12.9898) * 43758.5453;`r
+     |                                                        ^
+  80 |   return value - Math.floor(value);`r
+  81 | }`r
+  82 | `r
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Client Component Browser:
+    ./components/three/AliveCoreScene.tsx [Client Component Browser]
+    ./components/sections/HeroSection.tsx [Client Component Browser]
+    ./components/sections/HeroSection.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/sections/HeroSection.tsx:53:23
+Expected ';', '}' or <eof>
+  51 |   const [liteMode, setLiteMode] = useState(true);
+  52 |
+> 53 |   useEffect(() => {`r`n    const frame = window.requestAnimationFrame(() => {`r`n      set...
+     |                       ^
+  54 |
+  55 |   return (
+  56 |     <motion.div
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/sections/HeroSection.tsx
+    ./app/page.tsx 
+[browser] ./components/three/AliveCoreScene.tsx:79:56
+Expected ';', '}' or <eof>
+  77 |
+  78 | function seededNoise(seed: number) {`r
+> 79 |   const value = Math.sin(seed * 12.9898) * 43758.5453;`r
+     |                                                        ^
+  80 |   return value - Math.floor(value);`r
+  81 | }`r
+  82 | `r
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Client Component Browser:
+    ./components/three/AliveCoreScene.tsx [Client Component Browser]
+    ./components/sections/HeroSection.tsx [Client Component Browser]
+    ./components/sections/HeroSection.tsx [Server Component]
+    ./app/page.tsx [Server Component] 
