@@ -1,9 +1,15 @@
 "use client";
 
+import { Desktop } from "@/components/os/Desktop";
+import { BootScreen } from "@/components/os/BootScreen";
 import { SystemStatus } from "@/components/hero/SystemStatus";
 import { FloatingStats } from "@/components/hero/FloatingStats";
 import dynamic from "next/dynamic";
-import { motion, useReducedMotion } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+} from "framer-motion";
 import { ArrowRight, Cpu } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Badge } from "@/components/ui/Badge";
@@ -102,7 +108,35 @@ useEffect(() => {
 
 export function HeroSection() {
   const reducedMotion = useReducedMotion();
-  const transition = { duration: reducedMotion ? 0 : 0.78, ease: [0.16, 1, 0.3, 1] as const };
+
+const [booting, setBooting] = useState(false);
+const [bootStep, setBootStep] = useState(0);
+const [desktopVisible, setDesktopVisible] = useState(false);
+
+const transition = { duration: reducedMotion ? 0 : 0.78, ease: [0.16, 1, 0.3, 1] as const };
+useEffect(() => {
+  if (!booting) return;
+
+  setBootStep(0);
+  setDesktopVisible(false);
+
+
+  const timer1 = setTimeout(() => setBootStep(1), 700);
+  const timer2 = setTimeout(() => setBootStep(2), 1500);
+  const timer3 = setTimeout(() => setBootStep(3), 2300);
+
+  const timer4 = setTimeout(() => {
+    setDesktopVisible(true);
+    setBooting(false);
+  }, 3300);
+
+  return () => {
+    clearTimeout(timer1);
+    clearTimeout(timer2);
+    clearTimeout(timer3);
+    clearTimeout(timer4);
+  };
+}, [booting]);
 
   return (
     <section className="relative min-h-[calc(100vh-4rem)] overflow-hidden py-20 sm:py-28">
@@ -132,15 +166,16 @@ export function HeroSection() {
             AliveOS turns a homepage into a responsive digital organism: ambient, precise, cinematic, and aware of user presence from the first frame.
           </motion.p>
           <motion.div variants={copyVariants} transition={transition} className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <motion.a
-              href="#system"
+            <motion.button
+              type="button"
+              onClick={() => setBooting(true)}
               whileHover={reducedMotion ? undefined : { y: -2, scale: 1.015 }}
               whileTap={reducedMotion ? undefined : { scale: 0.985 }}
               className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-white px-6 text-base font-semibold text-black shadow-[0_0_36px_rgba(255,255,255,0.18)] transition hover:bg-white/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
             >
               Enter the System
               <ArrowRight aria-hidden="true" className="size-4" />
-            </motion.a>
+            </motion.button>
             <motion.a
               href="#craft"
               whileHover={reducedMotion ? undefined : { y: -2, scale: 1.015 }}
@@ -154,8 +189,14 @@ export function HeroSection() {
         </motion.div>
 
         <HeroVisual />
-      </Container>
-    </section>
+</Container>
+
+<AnimatePresence>
+  {booting && <BootScreen bootStep={bootStep} />}
+</AnimatePresence>
+{desktopVisible && <Desktop />}
+
+</section>
   );
 }
 

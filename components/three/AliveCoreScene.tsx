@@ -1,10 +1,13 @@
 "use client";
 
+
+import { AuroraBeams } from "./AuroraBeams";
 import { MeshDistortMaterial, Sparkles } from "@react-three/drei";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Suspense, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
+<AuroraBeams />
 
 type LivingCoreProps = {
   active: boolean;
@@ -146,6 +149,7 @@ function seededNoise(seed: number) {
 }
 
 function ParticleField() {
+  const particlesRef = useRef<THREE.Group>(null);
   const particles = useMemo(() => {
     const points = [];
 
