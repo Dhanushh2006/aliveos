@@ -1,5 +1,6 @@
 "use client";
 
+import { FloatingStats } from "@/components/hero/FloatingStats";
 import dynamic from "next/dynamic";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Cpu } from "lucide-react";
@@ -78,7 +79,10 @@ useEffect(() => {
           Responsive
         </span>
       </div>
-      <div className="absolute inset-0 pt-12">{liteMode ? <HeroSceneFallback /> : <AliveCoreScene />}</div>
+      <div className="absolute inset-0 pt-12">
+  {liteMode ? <HeroSceneFallback /> : <AliveCoreScene />}
+  <FloatingStats />
+</div>
       <div className="pointer-events-none absolute inset-x-8 bottom-8 z-10 grid gap-3 sm:grid-cols-3">
         {[
           ["Breath", "Ambient"],
