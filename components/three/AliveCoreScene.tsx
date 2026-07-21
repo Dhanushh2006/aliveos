@@ -1,6 +1,7 @@
 "use client";
 
 import { MeshDistortMaterial, Sparkles } from "@react-three/drei";
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Suspense, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
@@ -13,6 +14,8 @@ type LivingCoreProps = {
 function LivingCore({ active, onActivate }: LivingCoreProps) {
   const groupRef = useRef<THREE.Group>(null);
   const lightRef = useRef<THREE.PointLight>(null);
+  const ringOneRef = useRef<THREE.Mesh>(null);
+  const ringTwoRef = useRef<THREE.Mesh>(null);
   const { pointer, viewport } = useThree();
 
   useFrame((state) => {
@@ -38,36 +41,72 @@ function LivingCore({ active, onActivate }: LivingCoreProps) {
       light.position.x = THREE.MathUtils.lerp(light.position.x, pointer.x * viewport.width * 0.35, 0.08);
       light.position.y = THREE.MathUtils.lerp(light.position.y, pointer.y * viewport.height * 0.35 + 1.4, 0.08);
       light.intensity = THREE.MathUtils.lerp(light.intensity, active ? 7.4 : 5.4, 0.05);
-    }
+    }if (ringOneRef.current) {
+  ringOneRef.current.rotation.y += 0.0025;
+  ringOneRef.current.rotation.x += 0.0008;
+}
+
+if (ringTwoRef.current) {
+  ringTwoRef.current.rotation.x -= 0.0032;
+  ringTwoRef.current.rotation.z += 0.0015;
+}
+    if (ringOneRef.current) {
+  ringOneRef.current.rotation.y += 0.0025;
+  ringOneRef.current.rotation.x += 0.0008;
+}
+
+if (ringTwoRef.current) {
+  ringTwoRef.current.rotation.x -= 0.0032;
+  ringTwoRef.current.rotation.z += 0.0015;
+}
 
   });
 
   return (
     <group ref={groupRef} onClick={onActivate}>
       <pointLight ref={lightRef} position={[1.8, 2.2, 2.6]} intensity={5.4} color="#8be9ff" />
-      <mesh castShadow receiveShadow>
-        <icosahedronGeometry args={[1.38, 10]} />
-        <MeshDistortMaterial
-          color="#dffcff"
-          emissive="#22d3ee"
-          emissiveIntensity={0.34}
-          roughness={0.18}
-          metalness={0.64}
-          clearcoat={1}
-          clearcoatRoughness={0.08}
-          distort={0.22}
-          speed={1.35}
-        />
-      </mesh>
+      <mesh scale={0.72}>
+  <icosahedronGeometry args={[1.38, 7]} />
+  <meshStandardMaterial
+    color="#ffffff"
+    emissive="#67e8f9"
+    emissiveIntensity={2.8}
+    roughness={0.05}
+    metalness={0.2}
+  />
+</mesh><mesh castShadow receiveShadow>
+  <icosahedronGeometry args={[1.38, 10]} />
+  <MeshDistortMaterial
+    color="#dffcff"
+    emissive="#22d3ee"
+    emissiveIntensity={0.45}
+    roughness={0.08}
+    metalness={0.82}
+    clearcoat={1}
+    clearcoatRoughness={0.03}
+    transmission={0.92}
+    thickness={0.8}
+    distort={0.16}
+    speed={1.2}
+  />
+</mesh>
       <mesh scale={1.17}>
         <icosahedronGeometry args={[1.38, 3]} />
         <meshBasicMaterial color="#67e8f9" wireframe transparent opacity={0.12} />
       </mesh>
-      <mesh scale={1.78} rotation={[0.42, 0.18, 0.08]}>
+      <mesh
+  ref={ringOneRef}
+  scale={1.78}
+  rotation={[0.42, 0.18, 0.08]}
+>
         <torusGeometry args={[1.18, 0.006, 8, 160]} />
         <meshBasicMaterial color="#ffffff" transparent opacity={0.2} />
       </mesh>
-      <mesh scale={2.12} rotation={[1.12, -0.3, 0.26]}>
+      <mesh
+  ref={ringTwoRef}
+  scale={2.12}
+  rotation={[1.12, -0.3, 0.26]}
+>
         <torusGeometry args={[1.18, 0.005, 8, 160]} />
         <meshBasicMaterial color="#34d399" transparent opacity={0.14} />
       </mesh>
@@ -84,8 +123,8 @@ function ParticleField() {
   const particles = useMemo(() => {
     const points = [];
 
-    for (let i = 0; i < 120; i += 1) {
-      const radius = 2.3 + seededNoise(i + 1) * 2.2;
+    for (let i = 0; i < 450; i += 1) {
+      const radius = 2.4 + seededNoise(i + 1) * 3.6;
       const theta = seededNoise(i + 101) * Math.PI * 2;
       const phi = Math.acos(2 * seededNoise(i + 201) - 1);
       points.push(
@@ -104,11 +143,12 @@ function ParticleField() {
     <group>
       {particles.map((point, index) => (
         <mesh key={index} position={point}>
-          <sphereGeometry args={[index % 5 === 0 ? 0.018 : 0.011, 8, 8]} />
-          <meshBasicMaterial color={index % 4 === 0 ? "#a7f3d0" : "#bae6fd"} transparent opacity={0.52} />
+          <sphereGeometry args={[
+    index % 7 === 0 ? 0.014 : 0.006, 8, 8]} />
+          <meshBasicMaterial color={index % 4 === 0 ? "#a7f3d0" : "#bae6fd"} transparent opacity={0.78} />
         </mesh>
       ))}
-      <Sparkles count={34} scale={5.2} size={1.35} speed={0.24} opacity={0.46} color="#e0faff" />
+      <Sparkles count={120} scale={8} size={2.2} speed={0.45} opacity={0.46} color="#e0faff" />
     </group>
   );
 }
@@ -124,8 +164,16 @@ function SceneContent() {
       <directionalLight position={[-3, 4, 5]} intensity={1.8} color="#ffffff" />
       <directionalLight position={[4, -1, 2]} intensity={1.2} color="#34d399" />
       <ParticleField />
-      <LivingCore active={active} onActivate={() => setActive((value) => !value)} />
+      <LivingCore active={active} onActivate={() => setActive((value) => !value)} /><EffectComposer>
+  <Bloom
+    intensity={1.35}
+    luminanceThreshold={0.2}
+    luminanceSmoothing={0.9}
+    mipmapBlur
+  />
+</EffectComposer>
     </>
+    
   );
 }
 

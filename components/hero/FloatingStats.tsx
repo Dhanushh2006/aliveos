@@ -6,29 +6,29 @@ const stats = [
   {
     title: "128 FPS",
     subtitle: "Realtime Rendering",
-    top: "8%",
-    left: "8%",
+    top: "2%",
+    left: "2%",
     delay: 0,
   },
   {
     title: "3 AI Agents",
     subtitle: "Running",
-    top: "18%",
-    right: "8%",
+    top: "14%",
+    right: "2%",
     delay: 0.3,
   },
   {
     title: "4 ms",
     subtitle: "Latency",
-    bottom: "18%",
-    left: "10%",
+    bottom: "20%",
+    left: "4%",
     delay: 0.6,
   },
   {
     title: "99.9%",
     subtitle: "Stability",
-    bottom: "8%",
-    right: "10%",
+    bottom: "10%",
+    right: "4%",
     delay: 0.9,
   },
 ];
@@ -53,7 +53,7 @@ export function FloatingStats() {
           whileHover={{
             scale: 1.06,
           }}
-          className="absolute z-20 w-44 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,.35)]"
+          className="absolute z-20 w-36 rounded-2xl border border-cyan-300/10 bg-black/25 p-4 backdrop-blur-3xl shadow-[0_10px_40px_rgba(0,0,0,.35)]"
           style={{
             top: item.top,
             bottom: item.bottom,
