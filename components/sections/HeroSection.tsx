@@ -1,5 +1,6 @@
 "use client";
 
+import { SystemStatus } from "@/components/hero/SystemStatus";
 import { FloatingStats } from "@/components/hero/FloatingStats";
 import dynamic from "next/dynamic";
 import { motion, useReducedMotion } from "framer-motion";
@@ -149,6 +150,7 @@ export function HeroSection() {
               View Craft
             </motion.a>
           </motion.div>
+          <SystemStatus />
         </motion.div>
 
         <HeroVisual />
