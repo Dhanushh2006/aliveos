@@ -12,6 +12,7 @@ interface WindowProps {
   zIndex?: number;
   onFocus?: () => void;
   onClose?: () => void;
+  onMinimize?: () => void;
 }
 
 export function Window({
@@ -21,6 +22,7 @@ export function Window({
   zIndex = 10,
   onFocus,
   onClose,
+  onMinimize,
 }: WindowProps) {
     const dragControls = useDragControls();
     const [activeWindow, setActiveWindow] = useState("ai");
@@ -64,7 +66,12 @@ export function Window({
 
         <div className="flex gap-3 text-white/50">
 
-          <Minus size={15} />
+          <button
+  onClick={onMinimize}
+  className="text-white/60 transition hover:text-white"
+>
+  <Minus size={15} />
+</button>
 
           <Square size={13} />
 
