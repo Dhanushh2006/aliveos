@@ -33,7 +33,8 @@ export function Desktop() {
           Your adaptive operating system is ready.
         </p>
       </div>
-      <WindowManager />     
+      <WindowManager />
+          
       
 
 <Taskbar />

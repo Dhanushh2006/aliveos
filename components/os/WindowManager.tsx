@@ -6,15 +6,16 @@ import { AIAssistant } from "./apps/AIAssistant";
 import { FileExplorer } from "./apps/FileExplorer";
 import { Dock } from "./Dock";
 
-type WindowId = "ai" | "files";
+type WindowId = "ai" | "files" | "terminal";
 
 export function WindowManager() {
   const [activeWindow, setActiveWindow] = useState<WindowId>("ai");
 
   const [openWindows, setOpenWindows] = useState({
-    ai: true,
-    files: true,
-  });
+  ai: true,
+  files: true,
+  terminal: true,
+});
 
   function openWindow(id: WindowId) {
   setOpenWindows((prev) => ({

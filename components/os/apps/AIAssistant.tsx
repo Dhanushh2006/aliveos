@@ -1,8 +1,12 @@
 "use client";
 
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { Window } from "../Window";
 import { useEffect, useRef, useState } from "react";
-import { Send } from "lucide-react";
+import { Send, Copy, Check } from "lucide-react";
 
 interface AIAssistantProps {
   zIndex?: number;
@@ -30,57 +34,95 @@ export function AIAssistant({
 const messagesEndRef = useRef<HTMLDivElement>(null);
 const [loading, setLoading] = useState(false);
 const [input, setInput] = useState("");
+const [copied, setCopied] = useState<string | null>(null);
 
-function handleSend() {
-  if (!input.trim()) return;
-
+async function handleSend() {
   const text = input.trim();
 
-const userMessage: Message = {
-  id: Date.now(),
-  role: "user",
-  content: text,
-};
+  if (!text) return;
 
-setMessages((prev) => [...prev, userMessage]);
-setInput("");
+  const userMessage: Message = {
+    id: Date.now(),
+    role: "user",
+    content: text,
+  };
 
+  setMessages((prev) => [...prev, userMessage]);
+  setInput("");
   setLoading(true);
 
-  setTimeout(() => {
-  let response = "";
+  try {
+    const conversation = [
+  {
+    role: "user",
+    parts: [
+      {
+        text: `You are Alive AI.
 
-  switch (text.toLowerCase()) {
-    case "hello":
-    case "hi":
-      response = "Hello! 👋 Welcome to AliveOS.";
-      break;
+You are the intelligent operating system inside AliveOS.
 
-    case "who are you":
-      response = "I'm Alive AI, your intelligent operating system assistant.";
-      break;
+Always answer professionally.
 
-    case "help":
-      response =
-        "You can ask me about AliveOS, open applications, or use the terminal.";
-      break;
+Always use Markdown.
 
-    default:
-      response =
-        "I'm still running in offline mode. A real AI model will be connected soon.";
+When writing code always use fenced code blocks.
+
+Keep answers concise.`,
+      },
+    ],
+  },
+
+  ...messages.map((m) => ({
+    role: m.role === "assistant" ? "model" : "user",
+    parts: [
+      {
+        text: m.content,
+      },
+    ],
+  })),
+
+  {
+    role: "user",
+    parts: [
+      {
+        text,
+      },
+    ],
+  },
+];
+
+const res = await fetch("/api/chat", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    messages: conversation,
+  }),
+});
+
+    const data = await res.json();
+
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: Date.now() + 1,
+        role: "assistant",
+        content: data.reply,
+      },
+    ]);
+  } catch (error) {
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: Date.now() + 1,
+        role: "assistant",
+        content: "❌ Failed to contact Alive AI.",
+      },
+    ]);
   }
 
-  setMessages((prev) => [
-    ...prev,
-    {
-      id: Date.now() + 1,
-      role: "assistant",
-      content: response,
-    },
-  ]);
-
   setLoading(false);
-}, 900);
 }
 useEffect(() => {
   messagesEndRef.current?.scrollIntoView({
@@ -90,14 +132,14 @@ useEffect(() => {
   return (
     <Window
   title="AI Assistant"
-  className="left-12 top-20 h-[430px] w-[420px]"
+  className="left-12 top-20 h-[620px] w-[520px]"
   zIndex={zIndex}
   onFocus={onFocus}
   onClose={onClose}
 >
-      <div className="flex h-full flex-col">
+      <div className="flex h-full min-h-0 flex-col overflow-hidden">
 
-  <div className="flex-1 space-y-3 overflow-y-auto">
+  <div className="flex-1 min-h-0 space-y-3 overflow-y-auto pr-2">
 
   {messages.map((message, index) => (
     <div
@@ -108,13 +150,112 @@ useEffect(() => {
           : "bg-cyan-500 text-white self-end ml-auto"
       }`}
     >
-      {message.content}
+      <ReactMarkdown
+  remarkPlugins={[remarkGfm]}
+  components={{
+    h1: ({ children }) => (
+      <h1 className="mb-3 text-3xl font-bold text-white">
+        {children}
+      </h1>
+    ),
+    h2: ({ children }) => (
+      <h2 className="mb-3 mt-5 text-2xl font-semibold text-white">
+        {children}
+      </h2>
+    ),
+    h3: ({ children }) => (
+      <h3 className="mb-2 mt-4 text-xl font-semibold text-white">
+        {children}
+      </h3>
+    ),
+    p: ({ children }) => (
+      <p className="leading-7 text-white/90">
+        {children}
+      </p>
+    ),
+    ul: ({ children }) => (
+      <ul className="ml-5 list-disc space-y-1">
+        {children}
+      </ul>
+    ),
+    ol: ({ children }) => (
+      <ol className="ml-5 list-decimal space-y-1">
+        {children}
+      </ol>
+    ),
+    strong: ({ children }) => (
+      <strong className="font-bold text-cyan-300">
+        {children}
+      </strong>
+    ),
+    code({ className, children }) {
+  const match = /language-(\w+)/.exec(className || "");
+  const code = String(children).replace(/\n$/, "");
+
+  if (match) {
+    return (
+      <div className="relative my-3 overflow-hidden rounded-xl">
+        <button
+          onClick={async () => {
+            await navigator.clipboard.writeText(code);
+            setCopied(code);
+
+            setTimeout(() => {
+              setCopied(null);
+            }, 2000);
+          }}
+          className="absolute right-3 top-3 z-10 flex items-center gap-1 rounded-lg bg-black/60 px-3 py-1 text-xs text-white transition hover:bg-black/80"
+        >
+          {copied === code ? (
+            <>
+              <Check size={14} />
+              Copied
+            </>
+          ) : (
+            <>
+              <Copy size={14} />
+              Copy
+            </>
+          )}
+        </button>
+
+        <SyntaxHighlighter
+          style={atomDark}
+          language={match[1]}
+          PreTag="div"
+          customStyle={{
+            borderRadius: "12px",
+            margin: 0,
+            padding: "18px",
+            fontSize: "14px",
+          }}
+        >
+          {code}
+        </SyntaxHighlighter>
+      </div>
+    );
+  }
+
+  return (
+    <code className="rounded bg-black/40 px-1 py-0.5 text-cyan-300">
+      {children}
+    </code>
+  );
+}
+  }}
+>
+  {message.content}
+</ReactMarkdown>
     </div>
   ))}
 
   {loading && (
     <div className="rounded-xl bg-cyan-500/10 p-3 text-cyan-300 animate-pulse">
-      🤖 Alive AI is thinking...
+      <div className="flex items-center gap-2">
+  <div className="h-2 w-2 rounded-full bg-cyan-300 animate-bounce" />
+  <div className="h-2 w-2 rounded-full bg-cyan-300 animate-bounce [animation-delay:150ms]" />
+  <div className="h-2 w-2 rounded-full bg-cyan-300 animate-bounce [animation-delay:300ms]" />
+</div>
     </div>
   )}
   <div ref={messagesEndRef} />

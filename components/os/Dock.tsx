@@ -1,15 +1,18 @@
 "use client";
 
-import { Brain, Folder, Globe, Settings, Terminal } from "lucide-react";
+import { Brain, Folder, Globe, Settings, Terminal, TerminalSquare } from "lucide-react";
 import { motion } from "framer-motion";
 
-type WindowId = "ai" | "files";
+type WindowId = "ai" | "files" | "terminal";
 
 type App = {
   icon: typeof Folder;
   label: string;
   id?: WindowId;
+
+  
 };
+
 
 const apps: App[] = [
   {
@@ -33,6 +36,11 @@ const apps: App[] = [
   {
     icon: Settings,
     label: "Settings",
+  },
+  {
+    icon: TerminalSquare,
+    label: "Terminal",
+    id: "terminal",
   },
 ];
 

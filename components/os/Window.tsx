@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { motion, useDragControls } from "framer-motion";
 import { Minus, Square, X } from "lucide-react";
 import { ReactNode } from "react";
@@ -25,7 +24,6 @@ export function Window({
   onMinimize,
 }: WindowProps) {
     const dragControls = useDragControls();
-    const [activeWindow, setActiveWindow] = useState("ai");
   return (
     <motion.div
   drag
@@ -38,7 +36,7 @@ export function Window({
   initial={{ opacity: 0, scale: 0.92, y: 30 }}
   animate={{ opacity: 1, scale: 1, y: 0 }}
   transition={{ duration: 0.45 }}
-  className={`absolute rounded-2xl border border-white/10 bg-white/8 backdrop-blur-3xl shadow-[0_25px_90px_rgba(0,0,0,.45)] ${className}`}
+  className={`absolute flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/8 backdrop-blur-3xl shadow-[0_25px_90px_rgba(0,0,0,.45)] ${className}`}
   style={{ zIndex }}
 >
       {/* Title Bar */}
@@ -73,7 +71,9 @@ export function Window({
   <Minus size={15} />
 </button>
 
-          <Square size={13} />
+          <button className="text-white/60 transition hover:text-white">
+  <Square size={13} />
+</button>
 
           <X size={15} />
 
@@ -81,9 +81,9 @@ export function Window({
 
       </div>
 
-      <div className="p-6">
-        {children}
-      </div>
+      <div className="flex flex-1 flex-col overflow-hidden p-5">
+    {children}
+</div>
 
     </motion.div>
   );
